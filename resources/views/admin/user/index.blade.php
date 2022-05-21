@@ -6,7 +6,7 @@
 
         <div class="flex items-center">
             <button class="text-white focus:outline-none bg-gray-600 px-4 py-2 shadow-sm rounded-md">
-                <a href="{{ route('admin.post.create') }}">TAMBAH</a>
+                <a href="{{ route('admin.comment.create') }}">TAMBAH</a>
             </button>
 
             <div class="relative mx-4">
@@ -18,7 +18,7 @@
                             stroke-linejoin="round" />
                     </svg>
                 </span>
-                <form action="{{ route('admin.post.index') }}" method="GET">
+                <form action="{{ route('admin.comment.index') }}" method="GET">
                     <input class="form-input w-full rounded-lg pl-10 pr-4" type="text" name="q" value="{{ request()->query('q') }}"
                     placeholder="Search">
                 </form>
@@ -30,16 +30,20 @@
                 <table class="min-w-full table-auto">
                     <thead class="justify-between">
                         <tr class="bg-gray-600 w-full">
-                            <th class="px-16 py-2">
+                            <th>
                                 <span class="text-white">User</span>
                             </th>
-                            <th class="px-16 py-2 text-left">
+                            <th>
+                                <span class="text-white">Post</span>
+                            </th>
+                            <th>
+                                <span class="text-white">Email Comment</span>
+                            </th>
+                            <th>
                                 <span class="text-white">Comment</span>
                             </th>
-                            <th class="px-16 py-2 text-left">
-                                <span class="text-white">Content</span>
-                            </th>
-                            {{-- <th class="px-16 py-2">
+
+                            {{-- <th>
                                 <span class="text-white">AKSI</span>
                             </th> --}}
                         </tr>
@@ -47,17 +51,20 @@
                     <tbody class="bg-gray-200">
                         @forelse($data as $index)
                             <tr class="border bg-white">
-                                <td class="px-16 py-2">
+                                <td>
+                                    {{ $index->name }}
+                                </td>
+                                <td>
                                     {{ $index->title }}
                                 </td>
-                                <td class="px-16 py-2">
-                                    {{ $index->slug }}
+                                <td>
+                                    {{ $index->email }}
                                 </td>
-                                <td class="px-16 py-2">
-                                    {{ $index->content }}
+                                <td>
+                                    {{ $index->comment }}
                                 </td>
                                 {{-- <td class="px-10 py-2 text-center">
-                                    <a href="{{ route('admin.post.edit', $index->id) }}" class="bg-indigo-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">EDIT</a>
+                                    <a href="{{ route('admin.comment.edit', $index->id) }}" class="bg-indigo-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">EDIT</a>
                                     <button onClick="destroy(this.id)" id="{{ $index->id }}" class="bg-red-600 px-4 py-2 rounded shadow-sm text-xs text-white focus:outline-none">HAPUS</button>
                                 </td> --}}
                             </tr>
